@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <conio.h>
 
 int algoritmo1(int m,int x,char num[]);
 int algoritmo2(int y,int diez);
