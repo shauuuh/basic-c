@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define MAX 10
 
-struct Lista{
+struct Lista{//proceso
   char nombre;
   int tmp; //tiempo de llegada
   int rafaga; //quantum
@@ -13,8 +13,8 @@ typedef struct Lista Proceso;
 
 
 int nProcess = 0;
-Proceso p[MAX];
-Proceso a[MAX];
+Proceso p[MAX];//arreglo se ordenan procesos
+Proceso a[MAX];//arreglo original
 int fin = 0, intervalos = 0;
 double tmpProm = 0.0;//tiempo promedio
 
@@ -33,8 +33,7 @@ int main(){
   return 0;
 }
 
-void crearLista(){
-
+void crearLista(){//se pide inf sobre c/ proceso
   char nom = 97;
   printf("\nIngrese el numero de procesos (Maximo 10): ");
   scanf("%d",&nProcess);
@@ -49,7 +48,7 @@ void crearLista(){
   }
 }
 
-int quantUM(){
+int quantUM(){//se obtiene quantum
   int rest = 0,j;
   for(j = 0; j < nProcess; j++){
     rest+= a[j].tmp;
@@ -58,7 +57,7 @@ int quantUM(){
   return rest;
 }
 
-void Ordenar(){
+void Ordenar(){//ordena arreglo a en arreglo p
   int k,j;
   Proceso temp;
   for(int i = 0; i < nProcess ; i++){
@@ -76,7 +75,7 @@ void Ordenar(){
   }
 }
 
-void RoundRobin(){
+void RoundRobin(){//selección Round_Robin
   Ordenar();
   int aux = 0, auxtmp = 0;
   while(fin == 0){
@@ -90,7 +89,7 @@ void RoundRobin(){
           auxtmp+= quantUM();
           fin = 0;
         }else{
-            auxtmp += quantUM() + p[i].rafaga;
+            auxtmp += quantUM() + p[i].rafaga;//tiempo prom de cada proceso
             tmpProm+= intervalos * quantUM();
             p[i].tmpFinal = auxtmp;
             aux++;
@@ -98,11 +97,11 @@ void RoundRobin(){
       }
     }
   }
-  tmpProm = tmpProm /nProcess;
+  tmpProm = tmpProm /nProcess;//obtiene tiempo prom
 }
 
 void impresion(){
-  for(int i = 0; i < nProcess; i++){
+  for(int i = 0; i < nProcess; i++){//se actualiza inf en arreglo original
     for(int j = 0; j < nProcess; j++){
         if(p[i].nombre == a[j].nombre){
             a[j].tmpFinal = p[i].tmpFinal;
