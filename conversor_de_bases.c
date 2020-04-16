@@ -26,31 +26,31 @@ int main(){
         if(opc == 0){
             system("exit");
         }
-        x=checar1();
+        x=checar1();//ingresar base numerica de num
 
-        char num[100];
+        char num[100];//cadena p/ numero a convertir
 
-        if(opc == 1){
+        if(opc == 1){//fraccionario
     	    printf("\nCu%cntos d%cgitos deseas obtener?:",160,161);
    	        scanf("%d",&dig);
     	    printf("\n\n");
    	        printf("\nIngrese el n%cmero a convertir",163);
     	    printf("0.");
-    	    numero(num,x,opc);
+    	    numero(num,x,opc);//comprueba que el numero sea valido de acuerdo a su base
     	    m=numero(num,x,opc);
 
-    	    y=checar2();
-    	    bdiez2=algoritmo3(m,x,num);
-    	    algoritmo4(dig,y,bdiez2);
+    	    y=checar2();//base numerica a convertir
+    	    bdiez2=algoritmo3(m,x,num);//convierte a decimal punto flotante
+    	    algoritmo4(dig,y,bdiez2);//convierte a base deseada 
         }
-        if(opc==2){
+        if(opc==2){//entero
     	    printf("\n\n");
    	        printf("\nIngrese el n%cmero a convertir:",163);
-    	    numero(num,x,opc);
+    	    numero(num,x,opc);//comprueba que el numero sea valido de acuerdo a su base
     	    m=numero(num,x,opc);
-    	    y=checar2();
-    	    bdiez1=algoritmo1(m,x,num);
-    	    algoritmo2(y,bdiez1);
+    	    y=checar2();//base valida a convertir
+    	    bdiez1=algoritmo1(m,x,num);//conversion a decimal
+    	    algoritmo2(y,bdiez1);//conversion a base deseada
 
 	    }
 	    printf("\nPara salir presione 0,");
@@ -62,7 +62,7 @@ int main(){
 }
 
 
-int algoritmo1(int m,int x,char num[]){;
+int algoritmo1(int m,int x,char num[]){;//algoritmo p/ convertir a base decimal
     int n=0,i;
     for(i=0;i<m;i++){
         n=n*x+num[i];
@@ -70,7 +70,7 @@ int algoritmo1(int m,int x,char num[]){;
     return n;
     }
 
-int algoritmo2(int y,int bdiez1){
+int algoritmo2(int y,int bdiez1){//algoritmo p/ convertir de decimal a otra base(2-16)
     int q,n,p,cont=0;
     int a[100];
     int i=0;
@@ -91,7 +91,7 @@ int algoritmo2(int y,int bdiez1){
     }
 
 
-float algoritmo3(int m,int x,char num[]){
+float algoritmo3(int m,int x,char num[]){//algoritmo p/ numero fraccionario en decimal
     float n=0;
     int i;
     for(i=m-1;i>=0;i--){
@@ -100,7 +100,7 @@ float algoritmo3(int m,int x,char num[]){
     return n;
     }
 
-int algoritmo4(int dig,int y,float bdiez2){
+int algoritmo4(int dig,int y,float bdiez2){//algoritmo p/ numero fraccionario decimal a otra base
     int i,z;
     int a[50];
     for(i=0;i<dig;i++){
@@ -117,26 +117,26 @@ int algoritmo4(int dig,int y,float bdiez2){
         return a[dig];
     }
 
-int numero(char num[],int x,int opc){
+int numero(char num[],int x,int opc){//verifica si el numero es valido de acuerdo a la base ingresada
     int i,m=0,aux,c;
 
     do{
         aux=0;
-		m=0;
+        m=0;
         num[0]='\0';
         gets(num);
 
-    for (i=0;num[i]!='\0' && aux==0;i++){
-        if (isdigit(num[i]))
-            c =(num[i])-48;
-        else
-            c =(toupper(num[i]))-'A'+10;
-            //n = (int)strtol(num[i], NULL, x);
-        if(c>=x || c<0){
-            aux=1;
-        }else{
-            num[i]=c;
-            m++;
+    	for (i=0;num[i]!='\0' && aux==0;i++){
+        	if (isdigit(num[i]))//si los caracteres son numeros los convierte a enteros.
+            		c =(num[i])-48;
+        	else
+            		c =(toupper(num[i]))-'A'+10;//letras mayusculas o minusculas
+            		//n = (int)strtol(num[i], NULL, x);
+        	if(c>=x || c<0){//digito no exceda la base o sea menor a 0
+            		aux=1;
+        	}else{
+            		num[i]=c;//se agrega digito al arreglo si es valido
+           	 	m++;
 		}
     }
     if(aux==1){
@@ -161,7 +161,7 @@ int numero(char num[],int x,int opc){
     }
 }
 
-int checar1(){
+int checar1(){//checa base original del numero
 	int x;
 	printf("\n\nIngrese la base en la que se encuentra el n%cmero:",163);
     scanf("%d",&x);
@@ -173,7 +173,7 @@ int checar1(){
 	return x;
 }
 
-int checar2(){
+int checar2(){//checa base a convertir 
 	int y;
 	printf("\nA que base deseas convertir tu n%cmero?:",163);
     scanf("%d",&y);
