@@ -11,7 +11,6 @@ struct Lista{//proceso
 };
 typedef struct Lista Proceso;
 
-
 int nProcess = 0;
 Proceso p[MAX];//arreglo se ordenan procesos
 Proceso a[MAX];//arreglo original
